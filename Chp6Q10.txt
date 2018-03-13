@@ -1,0 +1,76 @@
+Part A:
+given the following input 
+
+Set A |11|1|3|1|
+Set B |10|1|4|4|
+
+
+The above algorithm will pick the following: {A,A,A,A}
+This has a value of 11+1+3+1=16
+
+However we can see that the Optimun picks are: {A,Move,B,B}
+This has the following values 11+0+4+4= 19
+This shows that the provided algorithm does not always return the optimun result.
+
+
+
+
+Part B:
+I will use Wa(i) for the amount of work we can get done at time i on machine A.
+I will use Wb(i) for the amount of work we can get done at time i on machine B.
+There are two cases in this problem:
+Case1: we start at machine A 
+Case2: we start at machine B
+
+From there we always have two options of where we will find the correct solution given we are in iteration i:
+Option1: We stay at the same machine that we are currently at for iteration i+1
+Option2: We decide to move taking in 0 work for the next iteration and can only work during iteration i+2
+
+I can then define 2 recurcive funtions one for each case
+Case1:
+Base case: OPTa(1)=A(1)
+OPTa(i)=A(i)+ Max(OPTa(i-1), OPTb(i-2))
+
+Case2:
+Base case: OPTb(1)=B(1)
+OPTb(i)=B(i)+ Max(OPTb(i-1), OPTa(i-2))
+
+We assume that any value for i<1 returns 0 in both set A and B
+
+We can then return Max(OPTa(n), OPTb(n)) which will be the value of the optimal plan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
