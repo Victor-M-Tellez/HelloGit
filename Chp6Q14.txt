@@ -1,0 +1,67 @@
+PARTA:
+Let Gi=(V,Ei) where i = 0,...,b
+We can make a conglomerate Graph called Gcom which has the same set of vertices in V and it has all the edges in all of the Ei sets for all legal values of i
+
+We can perform BFS on Gcom and trust that it will return us the correct answer since we know that there is a single path that is optimal in all the graphs
+This will take O(number of Vertices + total number of edges when all Ei sets are combined)
+This will return the best path.
+
+
+PARTB
+
+BellmanFord(G=(V,E), node root)
+	for all v in V:
+		distance[v]= infinity
+		parent[v]= null
+	distance[root] = 0
+	for i = range(1, |V|-1)
+		while there exists an Edge (x,y) in E that we have not traversed
+			if distance[y] > distance[x]+ Cost(Path(x,y)) 
+				distance[y] = distance[x]+ Cost(Path(x,y)) 
+				parent[y] = x
+
+
+We can perform the BellmanFord(G0) and get the best path for G0
+We initialize a Set Changes[]
+We initialize a Set Cost[]
+We initialize a pathLength[]
+We initialize a Path[]
+So our Base case is  BellmanFord(G0)
+add the path from BellmanFord(G0) to Path set
+length = length of the path from BellmanFord(G0)
+add length to pathLength 
+The as we move through the other Graphs G1, G2,G3 We will have 2 Cases
+
+Case1:Gi is the same as Gi+1. 
+In this case we can be certain that the path found in Gi is the same as the one in Gi+1. 
+So we do not have to compute the path we maintain the old one.
+Move onto the next graph
+
+
+Case2:Gi is the Different from Gi+1. 
+In this case we must recompute the path But we can use the old values from the path found in Gi and simply update the edges that make this Graph different from the previous one. This takes less time since we already know the shortest paths for any intersecting set of edges between Gi and Gi+1.  
+Once we get Path returned after performing bellman ford on Gi+1.
+add the path from BellmanFord(Gi+1) to Path set
+We compare Path of Gi to Path of Gi+1
+We calculate change= number of indices i for which Pi does not equal Pi+1
+Add change to our Changes set
+length = length of the path from BellmanFord(Gi+1)
+We calculate cost = SUM(of all lengths in PathLength) + k*SUM(of all changes in Changes) 
+
+
+FINALLY
+The set Path[] will contain all the paths that we will need for all graphs provided.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
