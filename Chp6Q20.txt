@@ -1,0 +1,28 @@
+I will be using ideas from the Subset Sums and Knapsack portion of the textbook
+We set the values to be
+n = number of courses/ number of final projects
+W= the number of hours I have to complete the projects before they are due
+vi= to Grade given to me on project i after spending w hours on it AKA fi(h)
+
+Now we want a subsetS of maximun value SUM(vi for all i that are in S).
+Also Sum(of all weights wi for all i that are in S)< W
+GRADE(n,W):
+	Array M[0..n, 0..W]
+	initialize M[0,w]= 0 for each w= 0,1,...,W
+	For i = 1,2..,n
+		For w=0,...,W
+			For j=0,...,W
+			vi= fi(j)
+			If w< wi 
+				OPT(i,w)=OPT(i-1,w)
+			Else
+				OPT(i,w)=Max(OPT(i-1,w), vi+OPT(i-1, w-wi))
+			ENDIF
+		EndFor
+		EndFor
+	EndFor
+
+Return M[n,W]
+
+
+
