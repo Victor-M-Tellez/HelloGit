@@ -1,0 +1,29 @@
+PartA:
+The given algorithm will not return an optimal solution for the following set
+
+event:                     e3                            
+	   e9  e7      e4  e5  e2  e8      e1                          	   
+	   *---*---*---*---*---*---*---*---*---*		
+location: -3  -2  -1   0   1   2   3   4   5   6
+
+The algorithm will return the following: e1, e5, e9
+However we can see that the optimal solution is: e2, e3, e4, e5, e9
+
+
+PARTB:
+
+We can create a recurrence relation by simply figuring out what was the last event that the group saw.
+We know that the last event is the most important so it is required to be seen So our base case is 
+Time(n) = e9
+
+We can then form a recursive function to find the optimal solution.
+Because time is linear counting down from time n is the same as counting up until we reach time n.
+Therefore I would like to reformat the problem in the form of
+at Time(i=0) = e9 We must find the longest path given n cycles. 
+Meaning one of our loop invarients will be i<n
+this also means that in order for event eX to be valid the following must be true:
+CONDITION1: (X+i most be less than or equal to n)
+At each iteration i we will have a different set of options
+Our options will be any event that can be reached and maintain CONDITION1 as we increment i by 1
+Our algorithm will produce a tree structure where the root is e9 and the longest path will be our solution.
+

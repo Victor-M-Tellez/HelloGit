@@ -1,0 +1,59 @@
+
+
+First we begin by performing a DFS on the graph with the root of our tree being node A.
+As we traverse our graph make sure to set the Descendents[] which will hold the number of 
+descendents that node has. So for Node A our root Descendents[A]= n-1. All the leaves in the
+tree will have Descendents[] value of 0.
+
+Then We can do the following:
+
+for all Nodes x in V
+	CycleCalled[x]  = 0 
+EndForLoop
+Cycle=0;
+CALL(node x, Cycle):
+	
+	CycleCalled[x]=Cycle;
+	Set uncalledChildren= {all children of x}
+	While there is a node in set uncalledChildren that we have not called
+		Node maxUncalled = the node in Set uncalledChildren that has the most descendents
+		Remove the node in Set uncalledChildren that has the most descendents from the set of uncalledChildren
+		CALL( maxUncalled Cycle+1)
+	EndWhile
+	
+GetOrder(CycleCalled):
+	Set nodes{} = V
+	While there is a node in Nodes that we have not taken into account
+		print node with the lowest CycleCalled and remove it from nodes{}
+	EndWhile
+
+
+This will return the path that traverses the graph in the least cycles because we target the nodes with the most descentdents first and in a semi-parallel way work our way through the tree.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
